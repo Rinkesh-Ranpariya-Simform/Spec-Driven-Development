@@ -24,7 +24,7 @@
 
 **Storage**: [if applicable, e.g., PostgreSQL, CoreData, files or N/A]
 
-**Testing**: [e.g., pytest, XCTest, cargo test or NEEDS CLARIFICATION]
+**Testing**: N/A — automated testing is prohibited by constitution (Principle V)
 
 **Target Platform**: [e.g., Linux server, iOS 15+, WASM or NEEDS CLARIFICATION]
 
@@ -40,7 +40,11 @@
 
 _GATE: Must pass before Phase 0 research. Re-check after Phase 1 design._
 
-[Gates determined based on constitution file]
+- [ ] **I. Clean Code** — functions are focused, names are self-documenting, no dead code
+- [ ] **II. Simple UX** — single primary action per screen, plain-language copy, all states designed
+- [ ] **III. Responsive Design** — layout verified at 320 px, 768 px, 1280 px; no fixed container widths
+- [ ] **IV. Minimal Dependencies** — no new dependency without written justification in this plan
+- [ ] **V. No Testing (NON-NEGOTIABLE)** — no test files, no test scripts, no testing libraries exist or are planned
 
 ## Project Structure
 
@@ -73,32 +77,25 @@ src/
 ├── cli/
 └── lib/
 
-tests/
-├── contract/
-├── integration/
-└── unit/
-
 # [REMOVE IF UNUSED] Option 2: Web application (when "frontend" + "backend" detected)
 backend/
-├── src/
-│   ├── models/
-│   ├── services/
-│   └── api/
-└── tests/
+└── src/
+    ├── models/
+    ├── services/
+    └── api/
 
 frontend/
-├── src/
-│   ├── components/
-│   ├── pages/
-│   └── services/
-└── tests/
+└── src/
+    ├── components/
+    ├── pages/
+    └── services/
 
 # [REMOVE IF UNUSED] Option 3: Mobile + API (when "iOS/Android" detected)
 api/
 └── [same as backend above]
 
 ios/ or android/
-└── [platform-specific structure: feature modules, UI flows, platform tests]
+└── [platform-specific structure: feature modules, UI flows]
 ```
 
 **Structure Decision**: [Document the selected structure and reference the real

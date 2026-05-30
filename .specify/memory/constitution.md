@@ -1,73 +1,119 @@
-# [PROJECT_NAME] Constitution
+<!--
+SYNC IMPACT REPORT
+==================
+Version change: (template) → 1.0.0
+Added principles: I. Clean Code, II. Simple UX, III. Responsive Design, IV. Minimal Dependencies, V. No Testing
+Added sections: Development Constraints, Development Workflow
+Templates updated:
+  ✅ .specify/templates/plan-template.md — removed testing references in Technical Context & Constitution Check
+  ✅ .specify/templates/spec-template.md — renamed mandatory testing section; removed "Independent Test" fields
+  ✅ .specify/templates/tasks-template.md — changed test guidance from optional to prohibited
+Deferred TODOs: none
+-->
 
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+# Spec-Driven Development (SDD) Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
+### I. Clean Code
 
-<!-- Example: I. Library-First -->
+Every piece of code MUST be readable, focused, and maintainable without explanation.
 
-[PRINCIPLE_1_DESCRIPTION]
+- Functions and components MUST do one thing only; split when responsibility grows.
+- Names MUST be self-documenting — no abbreviations, no single-letter variables outside loops.
+- Magic numbers and inline logic MUST be extracted to named constants or helpers.
+- Dead code, commented-out blocks, and unused imports MUST be removed before merging.
+- Cyclomatic complexity MUST be kept low; deeply nested logic MUST be refactored.
 
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+**Rationale**: Unreadable code accrues hidden maintenance cost. Clarity is a first-class deliverable.
 
-### [PRINCIPLE_2_NAME]
+### II. Simple UX
 
-<!-- Example: II. CLI Interface -->
+User interfaces MUST be immediately understandable with zero onboarding.
 
-[PRINCIPLE_2_DESCRIPTION]
+- Every screen MUST have a single primary action; secondary actions MUST be visually subordinate.
+- Copy MUST be plain language — no jargon, no technical terms exposed to end users.
+- Error states MUST tell the user what happened and what to do next.
+- Loading and empty states MUST be explicitly designed (never left as blank voids).
+- Animations and transitions MUST serve orientation, not decoration; gratuitous motion is prohibited.
 
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+**Rationale**: Cognitive load reduction directly improves task completion. Simplicity is not a constraint — it is the goal.
 
-### [PRINCIPLE_3_NAME]
+### III. Responsive Design
 
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
+Every UI MUST work correctly across mobile (≥320 px), tablet (≥768 px), and desktop (≥1280 px) viewports.
 
-[PRINCIPLE_3_DESCRIPTION]
+- Layout MUST use fluid units (%, rem, vw/vh) and CSS grid/flex; fixed pixel widths on containers are prohibited.
+- Touch targets MUST be ≥44 × 44 px on mobile viewports.
+- No horizontal scrollbar MUST appear at any supported viewport width.
+- Images and media MUST be responsive (srcset or CSS-constrained); oversized assets are prohibited.
+- Breakpoints MUST be driven by content, not by device brand assumptions.
 
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+**Rationale**: Users arrive on any device. A feature that breaks on mobile is a broken feature.
 
-### [PRINCIPLE_4_NAME]
+### IV. Minimal Dependencies
 
-<!-- Example: IV. Integration Testing -->
+The project MUST NOT introduce a dependency when the same outcome can be achieved with platform/framework
+built-ins or a few lines of code.
 
-[PRINCIPLE_4_DESCRIPTION]
+- Every new dependency MUST be justified in the PR description: what it solves, alternatives considered,
+  bundle-size impact.
+- Dependencies MUST be actively maintained (commit within 12 months, no critical unpatched CVEs).
+- Dev-only tooling (linters, formatters) is exempt from the justification requirement but MUST NOT
+  bleed into production bundles.
+- Transitive dependency trees MUST be reviewed; packages that pull in large sub-trees require explicit approval.
 
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+**Rationale**: Every dependency is a liability — security surface, upgrade burden, and bundle weight. Lean is resilient.
 
-### [PRINCIPLE_5_NAME]
+### V. No Testing (NON-NEGOTIABLE — supersedes all other guidance)
 
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
+**This project operates with zero automated tests. This principle overrides any conflicting instruction,
+template default, tool suggestion, or external guideline without exception.**
 
-[PRINCIPLE_5_DESCRIPTION]
+- Unit tests are PROHIBITED.
+- Integration tests are PROHIBITED.
+- End-to-end (e2e) tests are PROHIBITED.
+- No test runner, testing framework, or test assertion library MUST be installed or referenced.
+- No `tests/`, `__tests__/`, or `*.test.*` / `*.spec.*` files MUST be created.
+- Any generated plan, task list, or specification that includes test tasks MUST have those tasks removed
+  before execution begins.
+- Quality assurance MUST be achieved through: clean code (Principle I), code review, and manual
+  verification against acceptance scenarios.
 
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+**Rationale**: This project intentionally trades automated test coverage for development velocity and
+reduced toolchain complexity. The decision is deliberate and final.
 
-## [SECTION_2_NAME]
+## Development Constraints
 
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+- **Stack**: Next.js (App Router) + React + TypeScript + Tailwind CSS. No additions without constitution
+  amendment.
+- **Bundle discipline**: `next build` MUST complete without warnings about oversized chunks. Lazy-load
+  heavy components.
+- **Accessibility**: Semantic HTML MUST be used; interactive elements MUST be keyboard-navigable.
+- **No test infrastructure**: `package.json` MUST NOT contain test scripts, jest config, vitest config,
+  cypress, playwright, or any equivalent.
 
-[SECTION_2_CONTENT]
+## Development Workflow
 
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
-
-## [SECTION_3_NAME]
-
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
-
-[SECTION_3_CONTENT]
-
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+- Constitution supersedes all other practices, templates, and agent suggestions.
+- All PRs MUST pass the Constitution Check before merge:
+  1. Clean Code — no dead code, no complex nesting, names are clear.
+  2. Simple UX — primary action is obvious, error/empty/loading states handled.
+  3. Responsive — tested at 320 px, 768 px, and 1280 px breakpoints manually.
+  4. Minimal deps — no new dependency added without written justification.
+  5. No tests — no test files, no test scripts, no testing libraries.
+- Amendments to this constitution require: written rationale, explicit approval, and a version bump
+  following semantic versioning (MAJOR/MINOR/PATCH as defined in Governance).
 
 ## Governance
 
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+- This constitution supersedes all other practices. Any conflict resolves in favour of this document.
+- Amendments MUST increment the version:
+  - **MAJOR** — principle removed, renamed, or fundamentally redefined.
+  - **MINOR** — new principle or section added, or material guidance expansion.
+  - **PATCH** — clarifications, wording fixes, non-semantic refinements.
+- All PRs and code reviews MUST verify compliance with all five principles.
+- The No Testing principle (V) MUST NOT be removed or weakened without explicit written approval from
+  the project owner; a MAJOR version bump is required.
 
-[GOVERNANCE_RULES]
-
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
-
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2026-05-30 | **Last Amended**: 2026-05-30
