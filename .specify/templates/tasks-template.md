@@ -8,9 +8,9 @@ description: 'Task list template for feature implementation'
 
 **Prerequisites**: plan.md (required), spec.md (required for user stories), research.md, data-model.md, contracts/
 
-**Tests**: The examples below include test tasks. Tests are OPTIONAL - only include them if explicitly requested in the feature specification.
+**Tests**: Automated tests are PROHIBITED by constitution (Principle V — No Testing). Do NOT include any test tasks, test setup tasks, or testing framework installation tasks. Remove any test-related tasks from generated output.
 
-**Organization**: Tasks are grouped by user story to enable independent implementation and testing of each story.
+**Organization**: Tasks are grouped by user story to enable independent implementation and manual verification of each story.
 
 ## Format: `[ID] [P?] [Story] Description`
 
