@@ -1,6 +1,6 @@
 export default function ProjectLoading() {
   return (
-    <div>
+    <div className='h-full flex flex-col'>
       <div className='flex items-center justify-between mb-6'>
         <div className='h-6 w-64 bg-white/5 rounded animate-pulse' />
         <div className='flex gap-2'>
@@ -8,12 +8,12 @@ export default function ProjectLoading() {
           <div className='h-10 w-32 bg-white/5 rounded animate-pulse' />
         </div>
       </div>
-      <div className='flex gap-4 overflow-x-auto pb-4'>
+      <div className='flex gap-4 overflow-x-auto pb-4 flex-1 min-h-0'>
         {Array.from({ length: 5 }).map((_, i) => (
-          <div key={i} className='flex-shrink-0 w-[280px]'>
+          <div key={i} className='flex-shrink-0 w-[280px] flex flex-col h-full'>
             <div className='h-6 w-20 bg-white/5 rounded animate-pulse mb-3' />
             <div className='h-0.5 bg-white/5 rounded mb-3' />
-            <div className='space-y-2'>
+            <div className='flex-1 bg-white/[0.02] rounded-lg p-2 space-y-2'>
               {Array.from({ length: 3 }).map((_, j) => (
                 <div
                   key={j}
