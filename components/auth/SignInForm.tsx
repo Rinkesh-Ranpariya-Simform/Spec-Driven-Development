@@ -22,10 +22,6 @@ export const SignInForm: React.FC = () => {
     formState: { errors, isSubmitting },
   } = useForm<LoginInput>({
     resolver: zodResolver(loginSchema),
-    defaultValues: {
-      email: 'demo@taskflow.com',
-      password: 'password123',
-    },
   });
 
   const onSubmit = async (data: LoginInput) => {
@@ -117,11 +113,6 @@ export const SignInForm: React.FC = () => {
         >
           Sign up
         </Link>
-      </p>
-
-      <p className='text-center text-xs text-gray-500'>
-        Demo: <span className='text-gray-400'>demo@taskflow.com</span> /{' '}
-        <span className='text-gray-400'>password123</span>
       </p>
     </form>
   );
